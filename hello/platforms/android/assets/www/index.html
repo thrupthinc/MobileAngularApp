@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
+        <title>Hello World</title>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/angular-resource.min.js"></script>
+    </head>
+    <body >
+       <div >
+       <form runat="server" ng-app="LoginApp" ng-controller="LoginController" ng-submit="login()">
+       <div>
+      <label class="item item-input">
+           <input type="text" ng-model="username" placeholder="Userame" id="txtName">
+      </label>
+      <label class="item item-input">
+          <input type="password" ng-model="password" placeholder="Password" id="txtPwd">
+      </label>
+      <label class="item">
+           <input type="submit"  ng-app="LoginApp"  ng-controller="LoginController"  ng-click="login()" value="Login" />
+       </label>
+           <label ng-show="userName"></label>
+    </div>
+  </form> 
+           </div>     
+        <script type="text/javascript">
+
+            var app = angular.module("LoginApp", []);
+            app.controller("LoginController", function ($scope, $http) {
+                var uname = $scope.username;
+                var pwd = $scope.password;
+                var url = 'http://122.166.232.27:8090/XBSService/Service1.svc/getLoginInfo';
+                $scope.login = function () {
+                    $http.get(url).success(
+
+                        function (data) {
+                            alert(data.d);
+                        });
+                }
+            });
+        </script>
+    </body>
+</html>
